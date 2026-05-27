@@ -1,7 +1,11 @@
-// Package theme provides color themes for the ge text editor (tcell/v3 compatible)
 package theme
 
-import "github.com/gdamore/tcell/v3"
+import (
+	"fmt"
+	"os"
+
+	"github.com/gdamore/tcell/v3"
+)
 
 // --- 特殊文字 ---
 const (
@@ -13,54 +17,61 @@ const (
 	MarkContinue  = '⁃'
 )
 
-// --- 基本スタイル ---
-var (
-	// ColorDefault = tcell.StyleDefault.Foreground(tcell.ColorLightGrey) // 通常文字色
-	ColorDefault = tcell.StyleDefault.Foreground(tcell.NewRGBColor(192, 192, 192)).Background(tcell.NewRGBColor(24, 24, 24))
+const (
+	DefaultColorForgroundRed   = 192
+	DefaultColorForgroundGreen = 192
+	DefaultColorForgroundBlue  = 192
+
+	DefaultColorBackgroundRed   = 24
+	DefaultColorBackgroundGreen = 24
+	DefaultColorBackgroundBlue  = 24
 )
 
-// --- モードライン ---
+// Restore the editor's default foreground and background colors
+// for IME preedit rendering.
+func RestoreTerminalAttributes() {
+	fmt.Fprintf(os.Stdout,
+		"\x1b[38;2;%d;%d;%dm\x1b[48;2;%d;%d;%dm",
+		DefaultColorForgroundRed, DefaultColorForgroundGreen, DefaultColorForgroundBlue,
+		DefaultColorBackgroundRed, DefaultColorBackgroundGreen, DefaultColorBackgroundBlue,
+	)
+}
+
 var (
-	// ColorModeLineActive = ColorDefault.Reverse(true) // Normal color
-	// ColorModeLineActive = tcell.StyleDefault.Foreground(tcell.NewRGBColor(255, 255, 255)).Background(tcell.NewRGBColor(42, 123, 200)) // Blue line
-	// ColorModeLineActive   = tcell.StyleDefault.Foreground(tcell.NewRGBColor(255, 255, 255)).Background(tcell.NewRGBColor(83, 94, 75)) // Green line
+	// --- 基本スタイル ---
+	ColorDefault = tcell.StyleDefault.
+			Foreground(tcell.NewRGBColor(DefaultColorForgroundRed, DefaultColorForgroundGreen, DefaultColorForgroundBlue)).
+			Background(tcell.NewRGBColor(DefaultColorBackgroundRed, DefaultColorBackgroundGreen, DefaultColorBackgroundBlue)).
+			Underline(tcell.NewRGBColor(124, 124, 124)) // Cursor row
+
+	ColorColumnLimitOverflowBackground = tcell.NewRGBColor(44, 10, 33)
+
+	// --- Mode line ---
 	ColorModeLineActive   = tcell.StyleDefault.Foreground(tcell.NewRGBColor(0, 0, 0)).Background(tcell.NewRGBColor(10, 173, 169)) // Green line
 	ColorModelineInactive = ColorDefault.Foreground(tcell.ColorLightSlateGray).Reverse(true)
-	ColorRightbar         = ColorDefault.Foreground(tcell.NewRGBColor(128, 128, 128)).Background(tcell.NewRGBColor(28, 28, 28))
-	// 150,229,237 // cyan
-	// 150,237,156 // light green
-	// 216,184,138 //
-)
 
-// Linenumber
-var (
-	ColorLinenumber = ColorDefault.Foreground(tcell.NewRGBColor(128, 128, 128)).Background(tcell.NewRGBColor(32, 32, 32))
-)
+	// Split leaf bar
+	ColorRightbar = ColorDefault.Foreground(tcell.NewRGBColor(128, 128, 128)).Background(tcell.NewRGBColor(28, 28, 28))
 
-var (
-	ColorEchoLine = ColorDefault
-	// ColorEchoLine = ColorDefault.Background(tcell.NewRGBColor(51, 51, 51)).Foreground(tcell.ColorNames["white"])
-)
+	// Line Number
+	ColorLineNumber           = ColorDefault.Foreground(tcell.NewRGBColor(128, 128, 128)).Background(tcell.NewRGBColor(32, 32, 32))
+	ColorLineNumberOnEvenPage = ColorDefault.Foreground(tcell.NewRGBColor(152, 168, 164)).Background(tcell.NewRGBColor(32, 32, 32))
 
-// --- ポップアップメニュー ---
-var (
+	ColorEchoLine = ColorDefault.Foreground(tcell.NewRGBColor(168, 168, 86)).Background(tcell.NewRGBColor(40, 40, 40))
+
+	// --- ポップアップメニュー ---
 	ColorPopupmenuForeground = ColorDefault.Foreground(tcell.ColorAntiqueWhite).Background(tcell.ColorDarkCyan)
 	ColorPopupmenuBackground = ColorDefault.Foreground(tcell.ColorBlack).Background(tcell.ColorLightSlateGrey)
-)
 
-// --- 特殊文字・空白・制御文字 ---
-var (
-	ColorSpecialChar  = ColorDefault.Foreground(tcell.ColorLightSlateGray)
+	// --- 特殊文字・空白・制御文字 ---
 	ColorTab          = ColorDefault.Foreground(tcell.ColorDarkSlateGray)
 	ColorSpace        = ColorDefault.Background(tcell.ColorDarkSlateGrey)
 	ColorMarkContinue = ColorDefault.Foreground(tcell.ColorDarkSlateGray)
 	ColorMarkNewline  = ColorDefault.Foreground(tcell.ColorDarkSlateGray)
 	ColorMarkEOF      = ColorDefault.Foreground(tcell.ColorBlueViolet)
 	ColorControlCode  = ColorDefault.Foreground(tcell.ColorRed)
-)
 
-// --- 検索関連 ---
-var (
+	// --- 検索関連 ---
 	ColorFind                = ColorDefault.Foreground(tcell.ColorRed)
 	ColorSearchFound         = ColorDefault.Background(tcell.ColorDarkGreen)
 	ColorSearchFoundOnCursor = ColorDefault.Background(tcell.ColorOrangeRed)
@@ -81,6 +92,7 @@ var CodeColors = map[string]tcell.Style{
 }
 
 // --- ヘルパー関数 (将来的に RGB カラー追加や動的テーマ変更に便利) ---
+/*
 func Style(fg, bg tcell.Color, reverse, underline, bold bool) tcell.Style {
 	s := ColorDefault.Foreground(fg).Background(bg)
 	if reverse {
@@ -94,3 +106,4 @@ func Style(fg, bg tcell.Color, reverse, underline, bold bool) tcell.Style {
 	}
 	return s
 }
+*/
