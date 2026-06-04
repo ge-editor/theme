@@ -17,6 +17,10 @@ const (
 var (
 	// ColorDefault = tcell.StyleDefault.Foreground(tcell.ColorLightGrey) // 通常文字色
 	ColorDefault = tcell.StyleDefault.Foreground(tcell.NewRGBColor(192, 192, 192)).Background(tcell.NewRGBColor(24, 24, 24))
+
+	// ColorColumnLimitOverflow = ColorDefault.Background(tcell.NewRGBColor(44, 10, 33))
+	ColorColumnLimitOverflowBackground = tcell.NewRGBColor(44, 10, 33)
+	// ColorColumnLimitOverflow = ColorDefault.Background(tcell.NewRGBColor(34, 10, 23))
 )
 
 // --- モードライン ---
@@ -35,6 +39,8 @@ var (
 // Linenumber
 var (
 	ColorLinenumber = ColorDefault.Foreground(tcell.NewRGBColor(128, 128, 128)).Background(tcell.NewRGBColor(32, 32, 32))
+	// ColorLinenumberStarPage = ColorDefault.Foreground(tcell.NewRGBColor(128, 176, 128)).Background(tcell.NewRGBColor(32, 32, 32))
+	ColorLinenumberZebra = ColorDefault.Foreground(tcell.NewRGBColor(152, 168, 164)).Background(tcell.NewRGBColor(32, 32, 32))
 )
 
 var (
