@@ -36,11 +36,11 @@ var (
 	// 216,184,138 //
 )
 
-// Linenumber
+// Line Number
 var (
-	ColorLinenumber = ColorDefault.Foreground(tcell.NewRGBColor(128, 128, 128)).Background(tcell.NewRGBColor(32, 32, 32))
+	ColorLineNumber = ColorDefault.Foreground(tcell.NewRGBColor(128, 128, 128)).Background(tcell.NewRGBColor(32, 32, 32))
 	// ColorLinenumberStarPage = ColorDefault.Foreground(tcell.NewRGBColor(128, 176, 128)).Background(tcell.NewRGBColor(32, 32, 32))
-	ColorLinenumberZebra = ColorDefault.Foreground(tcell.NewRGBColor(152, 168, 164)).Background(tcell.NewRGBColor(32, 32, 32))
+	ColorLineNumberOnEvenPage = ColorDefault.Foreground(tcell.NewRGBColor(152, 168, 164)).Background(tcell.NewRGBColor(32, 32, 32))
 )
 
 var (
