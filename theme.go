@@ -1,6 +1,11 @@
 package theme
 
-import "github.com/gdamore/tcell/v3"
+import (
+	"fmt"
+	"os"
+
+	"github.com/gdamore/tcell/v3"
+)
 
 // --- 特殊文字 ---
 const (
@@ -12,11 +17,31 @@ const (
 	MarkContinue  = '⁃'
 )
 
+const (
+	DefaultColorForgroundRed   = 192
+	DefaultColorForgroundGreen = 192
+	DefaultColorForgroundBlue  = 192
+
+	DefaultColorBackgroundRed   = 24
+	DefaultColorBackgroundGreen = 24
+	DefaultColorBackgroundBlue  = 24
+)
+
+// Restore the editor's default foreground and background colors
+// for IME preedit rendering.
+func RestoreTerminalAttributes() {
+	fmt.Fprintf(os.Stdout,
+		"\x1b[38;2;%d;%d;%dm\x1b[48;2;%d;%d;%dm",
+		DefaultColorForgroundRed, DefaultColorForgroundGreen, DefaultColorForgroundBlue,
+		DefaultColorBackgroundRed, DefaultColorBackgroundGreen, DefaultColorBackgroundBlue,
+	)
+}
+
 var (
 	// --- 基本スタイル ---
 	ColorDefault = tcell.StyleDefault.
-			Foreground(tcell.NewRGBColor(192, 192, 192)).
-			Background(tcell.NewRGBColor(24, 24, 24)).
+			Foreground(tcell.NewRGBColor(DefaultColorForgroundRed, DefaultColorForgroundGreen, DefaultColorForgroundBlue)).
+			Background(tcell.NewRGBColor(DefaultColorBackgroundRed, DefaultColorBackgroundGreen, DefaultColorBackgroundBlue)).
 			Underline(tcell.NewRGBColor(124, 124, 124)) // Cursor row
 
 	ColorColumnLimitOverflowBackground = tcell.NewRGBColor(44, 10, 33)
@@ -32,7 +57,7 @@ var (
 	ColorLineNumber           = ColorDefault.Foreground(tcell.NewRGBColor(128, 128, 128)).Background(tcell.NewRGBColor(32, 32, 32))
 	ColorLineNumberOnEvenPage = ColorDefault.Foreground(tcell.NewRGBColor(152, 168, 164)).Background(tcell.NewRGBColor(32, 32, 32))
 
-	ColorEchoLine = ColorDefault
+	ColorEchoLine = ColorDefault.Foreground(tcell.NewRGBColor(168, 168, 86)).Background(tcell.NewRGBColor(40, 40, 40))
 
 	// --- ポップアップメニュー ---
 	ColorPopupmenuForeground = ColorDefault.Foreground(tcell.ColorAntiqueWhite).Background(tcell.ColorDarkCyan)
