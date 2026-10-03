@@ -7,7 +7,7 @@ import (
 	"github.com/gdamore/tcell/v3"
 )
 
-// --- 特殊文字 ---
+// --- Special characters ---
 const (
 	MarkTab       = '»'
 	MarkNewline   = '¬'
@@ -18,9 +18,9 @@ const (
 )
 
 const (
-	DefaultColorForgroundRed   = 192
-	DefaultColorForgroundGreen = 192
-	DefaultColorForgroundBlue  = 192
+	DefaultColorForegroundRed   = 192
+	DefaultColorForegroundGreen = 192
+	DefaultColorForegroundBlue  = 192
 
 	DefaultColorBackgroundRed   = 24
 	DefaultColorBackgroundGreen = 24
@@ -32,78 +32,106 @@ const (
 func RestoreTerminalAttributes() {
 	fmt.Fprintf(os.Stdout,
 		"\x1b[38;2;%d;%d;%dm\x1b[48;2;%d;%d;%dm",
-		DefaultColorForgroundRed, DefaultColorForgroundGreen, DefaultColorForgroundBlue,
+		DefaultColorForegroundRed, DefaultColorForegroundGreen, DefaultColorForegroundBlue,
 		DefaultColorBackgroundRed, DefaultColorBackgroundGreen, DefaultColorBackgroundBlue,
 	)
 }
 
 var (
-	// --- 基本スタイル ---
+	// --- Basic styles ---
 	ColorDefault = tcell.StyleDefault.
-			Foreground(tcell.NewRGBColor(DefaultColorForgroundRed, DefaultColorForgroundGreen, DefaultColorForgroundBlue)).
-			Background(tcell.NewRGBColor(DefaultColorBackgroundRed, DefaultColorBackgroundGreen, DefaultColorBackgroundBlue)).
-			Underline(tcell.NewRGBColor(124, 124, 124)) // Cursor row
+			Foreground(tcell.NewRGBColor(
+			DefaultColorForegroundRed,
+			DefaultColorForegroundGreen,
+			DefaultColorForegroundBlue,
+		)).
+		Background(tcell.NewRGBColor(
+			DefaultColorBackgroundRed,
+			DefaultColorBackgroundGreen,
+			DefaultColorBackgroundBlue,
+		)).
+		Underline(tcell.NewRGBColor(124, 124, 124)) // Cursor row
 
 	ColorColumnLimitOverflowBackground = tcell.NewRGBColor(44, 10, 33)
 
 	// --- Mode line ---
-	ColorModeLineActive   = tcell.StyleDefault.Foreground(tcell.NewRGBColor(0, 0, 0)).Background(tcell.NewRGBColor(10, 173, 169)) // Green line
-	ColorModelineInactive = ColorDefault.Foreground(tcell.ColorLightSlateGray).Reverse(true)
+	ColorModeLineActive = tcell.StyleDefault.
+				Foreground(tcell.NewRGBColor(0, 0, 0)).
+				Background(tcell.NewRGBColor(10, 173, 169))
+
+	ColorModelineInactive = ColorDefault.
+				Foreground(tcell.NewRGBColor(119, 136, 153)).
+				Reverse(true)
 
 	// Split leaf bar
-	ColorRightbar = ColorDefault.Foreground(tcell.NewRGBColor(128, 128, 128)).Background(tcell.NewRGBColor(28, 28, 28))
+	ColorRightbar = ColorDefault.
+			Foreground(tcell.NewRGBColor(128, 128, 128)).
+			Background(tcell.NewRGBColor(28, 28, 28))
 
-	// Line Number
-	ColorLineNumber           = ColorDefault.Foreground(tcell.NewRGBColor(128, 128, 128)).Background(tcell.NewRGBColor(32, 32, 32))
-	ColorLineNumberOnEvenPage = ColorDefault.Foreground(tcell.NewRGBColor(152, 168, 164)).Background(tcell.NewRGBColor(32, 32, 32))
+	// Line numbers
+	ColorLineNumber = ColorDefault.
+			Foreground(tcell.NewRGBColor(128, 128, 128)).
+			Background(tcell.NewRGBColor(32, 32, 32))
 
-	ColorEchoLine = ColorDefault.Foreground(tcell.NewRGBColor(168, 168, 86)).Background(tcell.NewRGBColor(40, 40, 40))
+	ColorLineNumberOnEvenPage = ColorDefault.
+					Foreground(tcell.NewRGBColor(152, 168, 164)).
+					Background(tcell.NewRGBColor(32, 32, 32))
 
-	// --- ポップアップメニュー ---
-	ColorPopupmenuForeground = ColorDefault.Foreground(tcell.ColorAntiqueWhite).Background(tcell.ColorDarkCyan)
-	ColorPopupmenuBackground = ColorDefault.Foreground(tcell.ColorBlack).Background(tcell.ColorLightSlateGrey)
+	ColorEchoLine = ColorDefault.
+			Foreground(tcell.NewRGBColor(168, 168, 86)).
+			Background(tcell.NewRGBColor(40, 40, 40))
 
-	// --- 特殊文字・空白・制御文字 ---
-	ColorTab          = ColorDefault.Foreground(tcell.ColorDarkSlateGray)
-	ColorSpace        = ColorDefault.Background(tcell.ColorDarkSlateGrey)
-	ColorMarkContinue = ColorDefault.Foreground(tcell.ColorDarkSlateGray)
-	ColorMarkNewline  = ColorDefault.Foreground(tcell.ColorDarkSlateGray)
-	ColorMarkEOF      = ColorDefault.Foreground(tcell.ColorBlueViolet)
-	ColorControlCode  = ColorDefault.Foreground(tcell.ColorRed)
+	// --- Popup menu ---
+	ColorPopupmenuForeground = ColorDefault.
+					Foreground(tcell.NewRGBColor(250, 235, 215)).
+					Background(tcell.NewRGBColor(0, 139, 139))
 
-	// --- 検索関連 ---
-	ColorFind                = ColorDefault.Foreground(tcell.ColorRed)
-	ColorSearchFound         = ColorDefault.Background(tcell.ColorDarkGreen)
-	ColorSearchFoundOnCursor = ColorDefault.Background(tcell.ColorOrangeRed)
+	ColorPopupmenuBackground = ColorDefault.
+					Foreground(tcell.NewRGBColor(0, 0, 0)).
+					Background(tcell.NewRGBColor(119, 136, 153))
+
+	// --- Special characters, whitespace, and control characters ---
+	ColorTab          = ColorDefault.Foreground(tcell.NewRGBColor(47, 79, 79))
+	ColorSpace        = ColorDefault.Background(tcell.NewRGBColor(47, 79, 79))
+	ColorMarkContinue = ColorDefault.Foreground(tcell.NewRGBColor(47, 79, 79))
+	ColorMarkNewline  = ColorDefault.Foreground(tcell.NewRGBColor(47, 79, 79))
+	ColorMarkEOF      = ColorDefault.Foreground(tcell.NewRGBColor(138, 43, 226))
+	ColorControlCode  = ColorDefault.Foreground(tcell.NewRGBColor(255, 0, 0))
+
+	// --- Search ---
+	ColorFind                = ColorDefault.Foreground(tcell.NewRGBColor(255, 0, 0))
+	ColorSearchFound         = ColorDefault.Background(tcell.NewRGBColor(0, 100, 0))
+	ColorSearchFoundOnCursor = ColorDefault.Background(tcell.NewRGBColor(255, 69, 0))
 )
 
-// --- ノード種類ごとの色 (Syntax Highlighting) ---
+// --- Colors by node type (syntax highlighting) ---
 var CodeColors = map[string]tcell.Style{
-	"interpreted_string_literal": ColorDefault.Foreground(tcell.ColorYellow),
-	"comment":                    ColorDefault.Foreground(tcell.ColorBlue),
-	"url":                        ColorDefault.Foreground(tcell.ColorLightCyan),
-	"package":                    ColorDefault.Foreground(tcell.ColorGreen),
-	"identifier":                 ColorDefault.Foreground(tcell.ColorRed),
-	"string":                     ColorDefault.Foreground(tcell.ColorPurple),
-	"number":                     ColorDefault.Foreground(tcell.ColorWhite),
-	"int_literal":                ColorDefault.Foreground(tcell.ColorBrown),
-	"slice_type":                 ColorDefault.Foreground(tcell.ColorDarkBlue),
-	"default":                    ColorDefault,
-}
+	// Go
+	"interpreted_string_literal": ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"comment":                    ColorDefault.Foreground(tcell.NewRGBColor(106, 153, 85)),  // Comment: #6a9955
+	"url":                        ColorDefault.Foreground(tcell.NewRGBColor(78, 201, 176)),  // URL / type: #4ec9b0
+	"package":                    ColorDefault.Foreground(tcell.NewRGBColor(197, 134, 192)), // Package / keyword: #c586c0
+	"identifier":                 ColorDefault.Foreground(tcell.NewRGBColor(156, 220, 254)), // Identifier / variable: #9cdcfe
+	"string":                     ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"number":                     ColorDefault.Foreground(tcell.NewRGBColor(181, 206, 168)), // Number: #b5cea8
+	"int_literal":                ColorDefault.Foreground(tcell.NewRGBColor(181, 206, 168)), // Integer literal: #b5cea8
+	"slice_type":                 ColorDefault.Foreground(tcell.NewRGBColor(78, 201, 176)),  // Type: #4ec9b0
 
-// --- ヘルパー関数 (将来的に RGB カラー追加や動的テーマ変更に便利) ---
-/*
-func Style(fg, bg tcell.Color, reverse, underline, bold bool) tcell.Style {
-	s := ColorDefault.Foreground(fg).Background(bg)
-	if reverse {
-		s = s.Reverse(true)
-	}
-	if underline {
-		s = s.Underline(true)
-	}
-	if bold {
-		s = s.Bold(true)
-	}
-	return s
+	// Markdown
+	"atx_heading":       ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"setext_heading":    ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"block_quote":       ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"list_marker":       ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"fenced_code_block": ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"code_span":         ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"emphasis":          ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"strong_emphasis":   ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"strikethrough":     ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"link":              ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"image":             ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"link_destination":  ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"link_title":        ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"html_tag":          ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+
+	"default": ColorDefault,
 }
-*/
