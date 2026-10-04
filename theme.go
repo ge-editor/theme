@@ -110,12 +110,23 @@ var CodeColors = map[string]tcell.Style{
 	"interpreted_string_literal": ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
 	"comment":                    ColorDefault.Foreground(tcell.NewRGBColor(106, 153, 85)),  // Comment: #6a9955
 	"url":                        ColorDefault.Foreground(tcell.NewRGBColor(78, 201, 176)),  // URL / type: #4ec9b0
-	"package":                    ColorDefault.Foreground(tcell.NewRGBColor(197, 134, 192)), // Package / keyword: #c586c0
+	"package":                    ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)),  // Package / keyword: #569CD6
+	"var":                        ColorDefault.Foreground(tcell.NewRGBColor(197, 134, 192)), // Package / keyword: #c586c0
 	"identifier":                 ColorDefault.Foreground(tcell.NewRGBColor(156, 220, 254)), // Identifier / variable: #9cdcfe
 	"string":                     ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
 	"number":                     ColorDefault.Foreground(tcell.NewRGBColor(181, 206, 168)), // Number: #b5cea8
 	"int_literal":                ColorDefault.Foreground(tcell.NewRGBColor(181, 206, 168)), // Integer literal: #b5cea8
 	"slice_type":                 ColorDefault.Foreground(tcell.NewRGBColor(78, 201, 176)),  // Type: #4ec9b0
+
+	// 追加のおすすめキーワード
+	"keyword":          ColorDefault.Foreground(tcell.NewRGBColor(197, 134, 192)), // Keyword: #c586c0
+	"function":         ColorDefault.Foreground(tcell.NewRGBColor(220, 220, 170)), // Function: #dcdcaa
+	"boolean":          ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)),  // Boolean: #569cd6
+	"field_identifier": ColorDefault.Foreground(tcell.NewRGBColor(156, 220, 254)), // Field: #9cdcfe
+	"operator":         ColorDefault.Foreground(tcell.NewRGBColor(212, 212, 212)), // Operator: #d4d4d4
+
+	// HUNG UP
+	// "escape_sequence":  ColorDefault.Foreground(tcell.NewRGBColor(215, 186, 125)), // Escape: #d7ba7d
 
 	// Markdown
 	"atx_heading":       ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
