@@ -18,13 +18,13 @@ const (
 )
 
 const (
-	DefaultColorForegroundRed   = 192
-	DefaultColorForegroundGreen = 192
-	DefaultColorForegroundBlue  = 192
+	DefaultColorForegroundRed   = 212
+	DefaultColorForegroundGreen = 212
+	DefaultColorForegroundBlue  = 212
 
-	DefaultColorBackgroundRed   = 24
-	DefaultColorBackgroundGreen = 24
-	DefaultColorBackgroundBlue  = 24
+	DefaultColorBackgroundRed   = 30
+	DefaultColorBackgroundGreen = 30
+	DefaultColorBackgroundBlue  = 30
 )
 
 // Restore the editor's default foreground and background colors
@@ -110,39 +110,64 @@ var CodeColors = map[string]tcell.Style{
 	"interpreted_string_literal": ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
 	"comment":                    ColorDefault.Foreground(tcell.NewRGBColor(106, 153, 85)),  // Comment: #6a9955
 	"url":                        ColorDefault.Foreground(tcell.NewRGBColor(78, 201, 176)),  // URL / type: #4ec9b0
-	"package":                    ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)),  // Package / keyword: #569CD6
-	"var":                        ColorDefault.Foreground(tcell.NewRGBColor(197, 134, 192)), // Package / keyword: #c586c0
-	"identifier":                 ColorDefault.Foreground(tcell.NewRGBColor(156, 220, 254)), // Identifier / variable: #9cdcfe
-	"string":                     ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
-	"number":                     ColorDefault.Foreground(tcell.NewRGBColor(181, 206, 168)), // Number: #b5cea8
-	"int_literal":                ColorDefault.Foreground(tcell.NewRGBColor(181, 206, 168)), // Integer literal: #b5cea8
-	"slice_type":                 ColorDefault.Foreground(tcell.NewRGBColor(78, 201, 176)),  // Type: #4ec9b0
+	// "identifier":                 ColorDefault.Foreground(tcell.NewRGBColor(156, 220, 254)), // Identifier / variable: #9cdcfe
+	"string": ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	// "number":                     ColorDefault.Foreground(tcell.NewRGBColor(181, 206, 168)), // Number: #b5cea8
+	// "int_literal":                ColorDefault.Foreground(tcell.NewRGBColor(181, 206, 168)), // Integer literal: #b5cea8
+	// "slice_type":                 ColorDefault.Foreground(tcell.NewRGBColor(78, 201, 176)),  // Type: #4ec9b0
 
-	// 追加のおすすめキーワード
-	"keyword":          ColorDefault.Foreground(tcell.NewRGBColor(197, 134, 192)), // Keyword: #c586c0
-	"function":         ColorDefault.Foreground(tcell.NewRGBColor(220, 220, 170)), // Function: #dcdcaa
-	"boolean":          ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)),  // Boolean: #569cd6
-	"field_identifier": ColorDefault.Foreground(tcell.NewRGBColor(156, 220, 254)), // Field: #9cdcfe
-	"operator":         ColorDefault.Foreground(tcell.NewRGBColor(212, 212, 212)), // Operator: #d4d4d4
+	// Go言語（Go言語仕様で定義されている25個の予約語
+	"var":         ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"const":       ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"func":        ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"type":        ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"package":     ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"import":      ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"if":          ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"else":        ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"switch":      ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"case":        ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"default":     ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"fallthrough": ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"for":         ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"range":       ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"break":       ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"continue":    ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"goto":        ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"return":      ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"select":      ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"struct":      ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"interface":   ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"map":         ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"chan":        ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"go":          ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+	"defer":       ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)), // #569CD6
+
+	// その他 追加 キーワード
+	// "keyword":          ColorDefault.Foreground(tcell.NewRGBColor(197, 134, 192)), // Keyword: #c586c0
+	// "function":         ColorDefault.Foreground(tcell.NewRGBColor(220, 220, 170)), // Function: #dcdcaa
+	// "boolean":          ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)),  // Boolean: #569cd6
+	// "field_identifier": ColorDefault.Foreground(tcell.NewRGBColor(156, 220, 254)), // Field: #9cdcfe
+	// "operator":         ColorDefault.Foreground(tcell.NewRGBColor(212, 212, 212)), // Operator: #d4d4d4
 
 	// HUNG UP
 	// "escape_sequence":  ColorDefault.Foreground(tcell.NewRGBColor(215, 186, 125)), // Escape: #d7ba7d
 
 	// Markdown
-	"atx_heading":       ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
-	"setext_heading":    ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
-	"block_quote":       ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
-	"list_marker":       ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
-	"fenced_code_block": ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
-	"code_span":         ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
-	"emphasis":          ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
-	"strong_emphasis":   ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
-	"strikethrough":     ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
-	"link":              ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
-	"image":             ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
-	"link_destination":  ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
-	"link_title":        ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
-	"html_tag":          ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)), // String: #ce9178
+	"atx_heading":       ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)).Bold(true), // String: #569CD6
+	"setext_heading":    ColorDefault.Foreground(tcell.NewRGBColor(86, 156, 214)).Bold(true), // String: #569CD6
+	"block_quote":       ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)),           // String: #ce9178
+	"list_marker":       ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)),           // String: #ce9178
+	"fenced_code_block": ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)),           // String: #ce9178
+	"code_span":         ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)),           // String: #ce9178
+	"emphasis":          ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)),           // String: #ce9178
+	"strong_emphasis":   ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)),           // String: #ce9178
+	"strikethrough":     ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)),           // String: #ce9178
+	"link":              ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)),           // String: #ce9178
+	"image":             ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)),           // String: #ce9178
+	"link_destination":  ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)),           // String: #ce9178
+	"link_title":        ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)),           // String: #ce9178
+	"html_tag":          ColorDefault.Foreground(tcell.NewRGBColor(206, 145, 120)),           // String: #ce9178
 
-	"default": ColorDefault,
+	// "default": ColorDefault,
 }
