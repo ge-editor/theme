@@ -71,12 +71,14 @@ var (
 	// Line numbers
 	ColorLineNumber = ColorDefault.
 			Foreground(tcell.NewRGBColor(128, 128, 128)).
-			Background(tcell.NewRGBColor(51, 51, 51))
+			Background(tcell.NewRGBColor(40, 40, 40))
+		// Background(tcell.NewRGBColor(51, 51, 51))
 		// Background(tcell.NewRGBColor(32, 32, 32))
 
 	ColorLineNumberOnEvenPage = ColorDefault.
 					Foreground(tcell.NewRGBColor(152, 168, 164)).
-					Background(tcell.NewRGBColor(51, 51, 51))
+					Background(tcell.NewRGBColor(40, 40, 40))
+		// Background(tcell.NewRGBColor(51, 51, 51))
 		// Background(tcell.NewRGBColor(32, 32, 32))
 
 	ColorEchoLine = ColorDefault.
