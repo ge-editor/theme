@@ -85,6 +85,12 @@ var (
 			Foreground(tcell.NewRGBColor(168, 168, 86)).
 			Background(tcell.NewRGBColor(40, 40, 40))
 
+	// Echo message styles retain the echo line background and change its foreground.
+	ColorEchoBlue   = ColorEchoLine.Foreground(tcell.NewRGBColor(86, 156, 214))
+	ColorEchoGreen  = ColorEchoLine.Foreground(tcell.NewRGBColor(106, 153, 85))
+	ColorEchoYellow = ColorEchoLine.Foreground(tcell.NewRGBColor(220, 220, 170))
+	ColorEchoRed    = ColorEchoLine.Foreground(tcell.NewRGBColor(244, 71, 71))
+
 	// --- Popup menu ---
 	ColorPopupmenuForeground = ColorDefault.
 					Foreground(tcell.NewRGBColor(250, 235, 215)).
