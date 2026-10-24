@@ -55,13 +55,45 @@ var (
 	ColorColumnLimitOverflowBackground = tcell.NewRGBColor(44, 10, 33)
 
 	// --- Mode line ---
-	ColorModeLineActive = tcell.StyleDefault.
-				Foreground(tcell.NewRGBColor(0, 0, 0)).
-				Background(tcell.NewRGBColor(10, 173, 169))
+	/* 	ColorModeLineActive = tcell.StyleDefault.
+	   				Foreground(tcell.NewRGBColor(0, 0, 0)).
+	   				Background(tcell.NewRGBColor(10, 173, 169))
 
-	ColorModelineInactive = ColorDefault.
-				Foreground(tcell.NewRGBColor(119, 136, 153)).
-				Reverse(true)
+	   	ColorModelineInactive = ColorDefault.
+	   				Foreground(tcell.NewRGBColor(119, 136, 153)).
+	   				Reverse(true)
+	*/
+	// 明るめの青（起点）
+	ColorModeLineActive1 = tcell.StyleDefault.
+				Foreground(tcell.NewRGBColor(244, 244, 244)).
+				Background(tcell.NewRGBColor(55, 76, 147))
+
+	// 少しトーンを落とした青
+	ColorModeLineActive2 = tcell.StyleDefault.
+				Foreground(tcell.NewRGBColor(244, 244, 244)).
+				Background(tcell.NewRGBColor(48, 66, 126))
+
+	// さらに暗くした落ち着いた青
+	ColorModeLineActive3 = tcell.StyleDefault.
+				Foreground(tcell.NewRGBColor(244, 244, 244)).
+				Background(tcell.NewRGBColor(41, 56, 105))
+
+	// 青からダークグレーへの中間色（背景をわずかに青みがかった暗色にし、文字色を馴染ませる）
+	ColorModeLineActive4 = tcell.StyleDefault.
+				Foreground(tcell.NewRGBColor(244, 244, 244)).
+		// Foreground(tcell.NewRGBColor(210, 218, 230)).
+		Background(tcell.NewRGBColor(38, 46, 70))
+
+	// 落ち着いたダークグレー（終点）
+	ColorModelineInactive = tcell.StyleDefault.
+				Foreground(tcell.NewRGBColor(180, 180, 180)).
+		// Foreground(tcell.NewRGBColor(200, 200, 200)).
+		Background(tcell.NewRGBColor(32, 45, 65))
+		// Background(tcell.NewRGBColor(30, 35, 55))
+	/*
+		style6 := tcell.StyleDefault.
+			Background(tcell.NewRGBColor(32, 45, 65))
+	*/
 
 	// Split leaf bar
 	ColorRightbar = ColorDefault.
@@ -83,11 +115,13 @@ var (
 
 	ColorEchoLine = ColorDefault.
 			Foreground(tcell.NewRGBColor(168, 168, 168)).
-			Background(tcell.NewRGBColor(40, 40, 40))
+		//Background(tcell.NewRGBColor(40, 40, 40))
+		Background(tcell.NewRGBColor(30, 35, 55))
 
 	// Echo message styles retain the echo line background and change its foreground.
-	ColorEchoBlue   = ColorEchoLine.Foreground(tcell.NewRGBColor(86, 156, 214))
-	ColorEchoGreen  = ColorEchoLine.Foreground(tcell.NewRGBColor(85, 220, 71))
+	ColorEchoBlue  = ColorEchoLine.Foreground(tcell.NewRGBColor(86, 156, 214))
+	ColorEchoGreen = ColorEchoLine.Foreground(tcell.NewRGBColor(106, 153, 85))
+	// ColorEchoLine.Foreground(tcell.NewRGBColor(85, 220, 71))
 	ColorEchoYellow = ColorEchoLine.Foreground(tcell.NewRGBColor(220, 220, 170))
 	ColorEchoRed    = ColorEchoLine.Foreground(tcell.NewRGBColor(244, 71, 71))
 
